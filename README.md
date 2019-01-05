@@ -39,6 +39,23 @@ Scalability is paramount. The code you build should not end up being a bottlenec
 
 ## Design
 
+### Architecture
+
+- **Framework**: I am using JavaScript, simply because I am very familiar with it.  This naturally means I will use Node and Express.
+- **API Design**: [Swagger Editor](http://editor.swagger.io) to generate the [API contract](https://swagger.io/blog/api-development/why-you-should-create-an-api-definition/) and swagger-codegen to generate the node server using express.
+- **Scalability**: [Node](https://nodejs.org/en/) is commonly used for designing production ready [scalable and concurrent](https://en.wikipedia.org/wiki/Node.js#Platform_architecture) backend systems.  If you are writing a backend using javascript (I am), then node is your huckleberry.
+- **Database Connectivity**: Using [Sequelize](https://sequelize.readthedocs.io/en/1.7.0/), which is the most popular (by download statistics) SQL ORM software package:
+	+ [Sequelize](https://sequelize.readthedocs.io/en/1.7.0/) The Sequelize library is an ORM (Object-Relational-Mapper) which provides easy access to MySQL, MariaDB, SQLite or PostgreSQL databases by mapping database entries to objects and vice versa.
+	+ [List](https://www.npmjs.com/search?q=ORM&ranking=popularity) of most popular ORM packages according to [npmjs](https://www.npmjs.com)
+	+ [Comparison](https://www.npmtrends.com/mongoose-vs-sequelize) of mongoose vs sequalize over last 6 months
+- **Security**: Implementing this using HTTP because doing it with an SSL certificate is not an option.  In practice, I would only publish an API using HTTPS.  Specifically, I'd use [CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html) and the [AWS API Gateway](https://aws.amazon.com/api-gateway/), or your cloud partner equivalent.
+
+### Trade Offs
+
+- I chose not to use python and django because I am unfamiliar with them and preferred to complete this challenge with tools I am proficient with.
+- Using [Sequelize](https://sequelize.readthedocs.io/en/1.7.0/) over [Mongoose](https://mongoosejs.com) because challenge calls for it.  Trade-off here is lilliputian battle of [SQL vs NoSQL](https://www.thegeekstuff.com/2014/01/sql-vs-nosql-db/).
+- Using HTTP over HTTPS.  Never use HTTP, only use exclusively HTTPS, except when doing coding challenges, because of the SSL certificate requirement.
+
 ## Usage
 
 ## License
