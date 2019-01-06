@@ -1,6 +1,24 @@
 # presto
 Presto backend API coding challenge
 
+## Table of Contents
+
+- [presto](#presto)
+  * [Table of Contents](#table-of-contents)
+  * [Task](#task)
+    + [Specifics](#specifics)
+    + [Requirements](#requirements)
+  * [Design](#design)
+    + [Architecture](#architecture)
+    + [Trade Offs](#trade-offs)
+  * [Server](#server)
+    + [Running the server](#running-the-server)
+  * [Client](#client)
+  * [License](#license)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 ## Task
 
 Utilizing your language of choice, design a RESTful web service API call that will return a list of menu items for a specific restaurant.
@@ -82,6 +100,20 @@ open http://localhost:8080/docs
 
 This project leverages the mega-awesome [swagger-tools](https://github.com/apigee-127/swagger-tools) middleware which does most all the work.
 
+## Client
+
+Read the Client instructions [here](modules/restaurant/client/README.md).  Here is a shortcut:
+
+```
+cd modules/restaurant/client
+npm install
+```
+
+and to test:
+
+```
+npm test
+```
 
 ## License
 
