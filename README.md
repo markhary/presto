@@ -6,14 +6,16 @@ Presto backend API coding challenge
 - [presto](#presto)
   * [Table of Contents](#table-of-contents)
   * [Task](#task)
-    + [Specifics](#specifics)
-    + [Requirements](#requirements)
+     + [Specifics](#specifics)
+     + [Requirements](#requirements)
   * [Design](#design)
-    + [Architecture](#architecture)
-    + [Trade Offs](#trade-offs)
+     + [Architecture](#architecture)
+     + [Trade Offs](#trade-offs)
   * [Server](#server)
-    + [Running the server](#running-the-server)
+     + [Running the server](#running-the-server)
   * [Client](#client)
+  * [Database Schema](#database-schema)
+  * [Future Work](#future-work)
   * [License](#license)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
@@ -114,6 +116,50 @@ and to test:
 ```
 npm test
 ```
+
+## Database Schema
+
+Link to actual schema
+
+## Future Work
+These are things I would do if this were a real module and not an interview challenge:
+
+* Cannot stress implement proper security enough - https, SSL connection to DB, secure DB, API keys, API authentication, etc.
+* Performance tests:
+  - 100 simultaneous clients
+  - 1000 items (with recursion)
+     - random item generator
+     - Both of these scalable
+     - connection reliability (intermittent connections)
+     - low bandwidth connectivity (e.g. 1 Mbps down, 0.04 Mbps up)
+  - Resource graphcs under load testing
+     - Memory, CPU usage 
+     - Perf statistics
+     - SQL call duration
+     - gprof
+     - O(N) estimation
+* Protection against cyclic graphs, e.g.:
+
+***Item Table:***
+
+ItemID | Name                 | Description
+-------|----------------------|---------------
+1      | Hamburger            | Food
+2      | Green Salad          | Leafy
+3      | Blue Cheese Dressing | Tasty
+4      | Blue Cheese          | Splurge!
+
+***Menu Table: Check for cyclic association in table***
+
+ItemID | Modifies| Note   | Recursion
+-------|---------|--------|-------------
+1      | NULL    | Top level item |
+2      | 1       | Green Salad as side to burger |
+3      | 2       | Blue Cheese Dressing for salad |
+4      | 3       | Extra blue cheese | ***Cyclic dependency*** |
+3      | 4       | Blue Cheese Dressing for blue cheese |***Cyclic dependency*** |
+
+
 
 ## License
 
