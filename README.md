@@ -119,17 +119,34 @@ npm test
 
 ## Database Schema
 
-Link to actual schema
+***Restaurant Table***
+
+RestaurantID | Name
+-------------|--------|
+int          | string |
+
+***Item Table***
+
+ItemID | RestaurantID | Name     | Description
+-------|--------------|----------|---------------
+int    | string       | string   | string
+
+***Menu Table***
+
+MenuID | Modifies| Note   
+-------|---------|--------
+int    | itemID  | string 
 
 ## Future Work
 These are things I would do if this were a real module and not an interview challenge:
 
+* Use UUIDs instead of incrementing ints for primary keys
 * Cannot stress implement proper security enough - https, SSL connection to DB, secure DB, API keys, API authentication, etc.
 * Performance tests:
-  - 100 simultaneous clients
-  - 1000 items (with recursion)
+  - Multiple restaurants
+  - X simultaneous clients
+  - Y items (with modifiers)
      - random item generator
-     - Both of these scalable
      - connection reliability (intermittent connections)
      - low bandwidth connectivity (e.g. 1 Mbps down, 0.04 Mbps up)
   - Resource graphcs under load testing
@@ -151,7 +168,7 @@ ItemID | Name                 | Description
 
 ***Menu Table: Check for cyclic association in table***
 
-ItemID | Modifies| Note   | Recursion
+ItemID | Modifies| Note   | Problem
 -------|---------|--------|-------------
 1      | NULL    | Top level item |
 2      | 1       | Green Salad as side to burger |
