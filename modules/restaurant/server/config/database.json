@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "presto",
+    "password": "presto",
+    "database": "presto",
+    "host": "192.168.56.102",
+    "port": "5432",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "update_me",
+    "password": "update_me",
+    "database": "update_me",
+    "host": "update_me",
+    "port": "update_me",
+    "dialect": "update_me"
+  },
+  "production": {
+    "username": "update_me",
+    "password": "update_me",
+    "database": "update_me",
+    "host": "update_me",
+    "port": "update_me",
+    "dialect": "update_me"
+  }
+}
