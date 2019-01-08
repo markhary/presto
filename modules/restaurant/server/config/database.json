@@ -6,7 +6,7 @@
     "host": "192.168.56.102",
     "port": "5432",
     "dialect": "postgres",
-    "logging": true
+    "logging": false
   },
   "test": {
     "username": "update_me",

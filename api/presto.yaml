@@ -43,35 +43,65 @@ paths:
               $ref: "#/definitions/Item"
             example:
             - id: 1
+              item_id: 1
               name: "Hamburger"
-              description: "Sandwich with meat"
+              description: "Entre: Hot meat sandwich"
               modifiers:
-              - id: 100
-                name: "Ketchup"
-                description: "Tomato sauce with sugar"
-              - id: 101
-                name: "Lettuce"
-                description: "Leafy"
-            - id: 2
-              name: "French fries"
-              description: "Potatoes done properly"
-            - id: 3
-              name: "Salad"
-              description: "More greenery"
-              modifiers:
-              - id: 300
-                name: "Blue Cheese Dressing"
-                description: "With blue cheese"
+              - id: 4
+                item_id: 2
+                name: "Green Salad"
+                description: "Side: Somethinggreen"
+                modifiers:  
+                - id: 7
+                  item_id: 6
+                  name: "Blue Cheese Dressing"
+                  description: "Sauce: M&M (Mayonnaise & Mold), yummmm..."
+                  modifiers):
+                  - id: 10
+                    item_id: 9
+                    name: "Blue Cheese"
+                    description: "Side: Never enough"
+                - id: 8
+                  item_id: 7
+                  name: "Oil and Vinegar"
+                  description: "Sauce: Ye olde standarde"
+                - id: 302
+                  name: "Thousand Island Dressing"
+                  description: "Sauce: Because 999 Island sucked"
+              - id: 3
+                item_id: 3
+                name: "French fries"
+                description: "Side: Crispy potatoes"
                 modifiers:
-                - id: 3000
-                  name: "Extra blue cheese"
-                  description: "Can't get enough"
-              - id: 301
+                - id: 6
+                  item_id: 5
+                  name: "Ketchup"
+                  description: "Sauce: Tomatoes with sugar"
+              - id: 5
+                item_id: 4
+                name: "Lettuce Wrap"
+                description: "Preparation: Paleo option"
+            - id: 2
+              item_id: 2
+              name: "Green Salad"
+              description: "Side: Somethinggreen"
+              modifiers:  
+              - id: 7
+                item_id: 6
+                name: "Blue Cheese Dressing"
+                description: "Sauce: M&M (Mayonnaise & Mold), yummmm..."
+                modifiers):
+                - id: 10
+                  item_id: 9
+                  name: "Blue Cheese"
+                  description: "Side: Never enough"
+              - id: 8
+                item_id: 7
                 name: "Oil and Vinegar"
-                description: "A trusted classic"
-              - id: 302
+                description: "Sauce: Ye olde standarde"
+              - id: 9
                 name: "Thousand Island Dressing"
-                description: "Because 999 Island sucked"
+                description: "Sauce: Because 999 Island sucked"
         400:
           description: "Invalid RestaurantID supplied"
         404:
@@ -82,6 +112,9 @@ definitions:
     type: "object"
     properties:
       id:
+        type: "integer"
+        format: "int64"
+      item_id:
         type: "integer"
         format: "int64"
       name:
