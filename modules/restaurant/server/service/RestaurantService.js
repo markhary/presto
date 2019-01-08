@@ -2,6 +2,7 @@
 
 const utils = require('../utils/writer.js');
 const Restaurant = require('../models').Restaurant;
+const db = require('../models');
 
 /**
  * Retrive list of menu items available at restaurant
@@ -22,84 +23,16 @@ exports.getItemsById = function(restaurantID) {
                 ));
             }
 
-            return resolve(utils.respondWithCode(200, restaurant));
+            db.sequelize.query(
+                'SELECT * FROM "Menus" WHERE restaurant_id = ?',
+                { 
+                    raw: true, 
+                    replacements: [restaurantID],
+                    type: db.sequelize.QueryTypes.SELECT,
+                }
+            ).then(response => {
+                    return resolve(utils.respondWithCode(200, response));
+                });
         });
     });
-
-    /*
-    return Restaurant.findByPk(restaurantID).then(restaurant => {
-        console.log(restaurant);
-
-        if ( restaurant == null ) {
-            console.log("404");
-            utils.respondWithCode(404, 'Restaurant Not Found');
-        }
-        console.log("Going to return something, now sure what it is")
-        utils.respondWithCode(200, restaurant);
-    });
-    */
-
-    /*
-    return Restaurant.find(restaurantID)
-            .then(restaurant) => {
-            if ( !restaurant ) {
-                resolve(utils.respondWithCode(404, 'Restaurant Not Found'));
-            }
-            resolve(utils.respondWithCode(200, { "getting": "somewhere" }));
-        };
-
-    });
-    */
-
-    /*
-    return Restaurant
-        .findById(restaurantID)
-        .then(restaurant) => {
-            if (!restaurant) {
-                return respondWithCode(404, 'Restaurant Not Found');
-            }
-
-            payload = [ {
-                "id" : 1,
-                "name" : "Hamburger",
-                "description" : "Sandwich with meat",
-                "modifiers" : [ {
-                    "id" : 100,
-                    "name" : "Ketchup",
-                    "description" : "Tomato sauce with sugar"
-                }, {
-                    "id" : 101,
-                    "name" : "Lettuce",
-                    "description" : "Leafy"
-                } ]
-            }, {
-                "id" : 2,
-                "name" : "French fries",
-                "description" : "Potatoes done properly"
-            }, {
-                "id" : 3,
-                "name" : "Salad",
-                "description" : "More greenery",
-                "modifiers" : [ {
-                    "id" : 300,
-                    "name" : "Blue Cheese Dressing",
-                    "description" : "With blue cheese",
-                    "modifiers" : [ {
-                        "id" : 3000,
-                        "name" : "Extra blue cheese",
-                        "description" : "Can't get enough"
-                    } ]
-                }, {
-                    "id" : 301,
-                    "name" : "Oil and Vinegar",
-                    "description" : "A trusted classic"
-                }, {
-                    "id" : 302,
-                    "name" : "Thousand Island Dressing",
-                    "description" : "Because 999 Island sucked"
-                } ]
-            } ];
-            return respondWithCode(200, payload);
-        }
-        */
 }
