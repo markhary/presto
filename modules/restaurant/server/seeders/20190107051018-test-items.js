@@ -38,7 +38,7 @@ module.exports = {
                   id: 6,
                   restaurant_id: 1,
                   name: 'Blue Cheese Dressing',
-                  description: 'Salad option',
+                  description: 'M&M (Mayonnaise & Mold), yummmmm...',
               },
               {
                   id: 7,
