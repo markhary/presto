@@ -11,14 +11,14 @@ SELECT "Items".name, "Items".description, "Menus".item_id, "Menus".description, 
 -- and tracking depth to avoid cycles
 --
 \echo Restaurant 1
-WITH RECURSIVE menu_items(id, item_id, description, modifies, depth, root_id) AS (
+WITH RECURSIVE menu_items(id, item_id, modifies_as, modifies, depth, root_id) AS (
     SELECT m1.id, m1.item_id, m1.description, m1.modifies, 1, m1.id
     FROM "Menus" m1 WHERE restaurant_id=1 AND modifies IS NULL
         UNION ALL
     SELECT m1.id, m1.item_id, m1.description, m1.modifies, m2.depth+1, m2.root_id
     FROM "Menus" m1, menu_items m2 WHERE m1.modifies = m2.item_id
 )
-SELECT menu_items.id, "Items".name, "Items".description, item_id, menu_items.description, modifies, depth, root_id
+SELECT menu_items.id, "Items".name, "Items".description, item_id, menu_items.modifies_as, modifies, depth, root_id
     FROM menu_items, "Items" 
     WHERE item_id = "Items".id
     ORDER BY root_id, depth ASC;
