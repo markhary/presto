@@ -5,7 +5,8 @@
     "database": "presto",
     "host": "192.168.56.102",
     "port": "5432",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "logging": true
   },
   "test": {
     "username": "update_me",
@@ -13,7 +14,8 @@
     "database": "update_me",
     "host": "update_me",
     "port": "update_me",
-    "dialect": "update_me"
+    "dialect": "update_me",
+    "logging": false
   },
   "production": {
     "username": "update_me",
@@ -21,6 +23,7 @@
     "database": "update_me",
     "host": "update_me",
     "port": "update_me",
-    "dialect": "update_me"
+    "dialect": "update_me",
+    "logging": false
   }
 }
